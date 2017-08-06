@@ -26,7 +26,7 @@ func InstrumentMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 		c.Set("Tracer", tr)
 		err := next(c)
 		tr.Stop()
-		req.Stop(tr, ExtractHeader(c, "X-Request-Id"), ExtractHeader(c, "X-Hop-Count"), c.Response().Status, c.Response().Header)
+		req.Stop(tr, ExtractHeader(c, "X-Request-Id"), ExtractHeader(c, "X-Hop-Count"), c.Response().Status, c.Response().Header())
 		// b, _ := json.Marshal(req)
 		// log.Printf("%s", string(b))
 		return err
